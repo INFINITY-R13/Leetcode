@@ -12,10 +12,8 @@ def romanToInt(s: str) -> int:
         'D': 500,
         'M': 1000
     }
-
     total = 0
     i = 0
-
     while i < len(s):
         if i + 1 < len(s) and roman_numerals[s[i]] < roman_numerals[s[i + 1]]:
             total += roman_numerals[s[i + 1]] - roman_numerals[s[i]]
@@ -23,5 +21,27 @@ def romanToInt(s: str) -> int:
         else:
             total += roman_numerals[s[i]]
             i += 1
+    return total
 
-    return total 
+
+# Test cases
+test_cases = [
+    ("III", 3),
+    ("IV", 4),
+    ("IX", 9),
+    ("XIV", 14),
+    ("LVIII", 58),
+    ("MCMXCIV", 1994),
+    ("MMXXIV", 2024),
+    ("CDXLIV", 444),
+]
+
+print("Testing romanToInt function:")
+print("-" * 50)
+
+for roman, expected in test_cases:
+    result = romanToInt(roman)
+    status = "✓ PASS" if result == expected else "✗ FAIL"
+    print(f"{status} | {roman:10} = {result:5} (expected {expected})")
+
+print("-" * 50)
